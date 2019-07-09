@@ -1,0 +1,234 @@
+/* для подключения через php */
+	/* header('Content-type: text/css; charset: UTF-8'); */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+p {
+	margin: 15px 0;
+}
+
+body, 
+button, 
+input[type=text], 
+input[type=password], 
+h1, 
+textarea {
+	font-family: 'Open Sans', sans-serif;
+	/* font-size: 16px; */
+}
+
+input,
+textarea{
+	background: #f1f6fc;
+}
+
+h1 {
+	color: #004e75;
+	/* font-size: 20px; */
+}
+
+button {
+	padding: 8px;
+	font-size: 1rem;
+	color: #fff;
+	background: #34C0E2;
+	border: none;
+	border-radius: 8px;
+}
+
+button:focus{
+	outline: none;
+}
+
+button:hover {
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+input[type=text], 
+input[type=password], 
+textarea {
+	padding: 8px;
+	border: 1px solid rgb(122, 122, 122);
+	border-radius: 8px;
+	color: #555;
+	width: 300px;
+	outline: none;
+}
+
+textarea {
+	height: 250px;
+	resize: none;
+}
+
+.wrapper, 
+.content, 
+.menu, 
+body, 
+html {
+	height: 100%;
+}
+
+.auxiliary-wrapper{
+	padding-top: 1em;
+}
+
+.menu {
+	width: 200px;
+	padding: 0.5em 0.5em;
+	background: #464E78;
+}
+
+.menu a {
+	display: block;
+	color: #fff;
+	padding: 0.6em 1em;
+	text-transform: uppercase;
+}
+
+.wrapper,
+.newsWrapper {
+	display: flex;
+}
+
+.content {
+	flex: 1;
+	padding: 1.5em;
+}
+
+.vacation_menu{
+	display: flex;
+    justify-content: center;
+	padding: 0.5em;
+	background: rgb(132, 145, 202);
+}
+
+.vacation_menu a{
+	color: #fff;
+	margin: 0.6em 1em;
+	text-transform: uppercase;
+}
+
+.gretting{
+	margin: 40px;
+	padding: 20px;
+	background: #fff;
+	text-align: center;
+	border: 2px solid rgb(20, 37, 90);
+}
+
+.welcomeWrapper{
+	color: rgb(20, 37, 90);
+}
+
+.timeInfo{
+	display: flex;
+	margin-bottom: 3em;
+}
+
+.profileData ul{
+	margin-left: 1em;
+	list-style: none;
+	
+}
+
+.underline{
+	color: #333;
+}
+
+.title{
+	max-width: 15em;
+	min-width: 11.5em;
+	margin-right: 15em;
+	margin-bottom: 1em;
+	padding: 0 1em;
+	background: rgb(20, 37, 90);
+	color: #fff;
+}
+
+.article-title{
+	display: grid;
+	grid-template-rows: 90%;
+	grid-template-columns: 90% 10%;
+	font-size: 1.3rem;
+	color: #333;
+}
+
+.article-title:hover span{
+	font-size: 1.4rem;
+	color: #777;
+	text-decoration: underline;
+}
+
+.article-title button{
+	margin-left: 1em;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+table td{
+	padding: 0.4em;
+	border-bottom: 2px solid grey;
+}
+
+.uploadInfo{
+	display: flex;
+	margin-top: 3em;
+}
+
+.loginWrapper,
+.signupWrapper{
+    width: 40em;
+    margin: 0 auto;
+    padding: 3em;
+	text-align: center;
+}
+
+.loginForm,
+.signupForm{
+	border: 2px solid rgb(20, 37, 90);
+	padding: 1em;
+}
+
+.goBackSignup{
+	margin-left: 1em;
+	width: 5em;
+	padding: 9px;
+	font-weight: bold;
+	color: #fff;
+	background: #34C0E2;
+	border-radius: 8px;
+}
+
+.goBackSignup:hover{
+	opacity: 0.8;
+}
+
+.newsWrapper{
+	margin-top: 5em;
+}
+
+.newsForm{
+	margin: 40px;
+	padding: 1.5em;
+	background: #fff;
+	/* text-align: center; */
+	border: 2px solid rgb(20, 37, 90);
+}
+
+/* .articleHeader{
+	margin-bottom: 2em;
+} */
+
+.articleArea{
+	width: 100%;
+}
