@@ -7,6 +7,7 @@
         if(isset($_POST['send'])) {
             $articleHeader = htmlspecialchars($_POST['articleHeader']);
             $text_body = htmlspecialchars($_POST['text_body']);
+            $img = $_POST['articlImg'];
 
 
             // Для того чтобы текст сохранялся в полях при перезагрузке страницы
@@ -34,10 +35,13 @@
                 $day = date('d.m.Y');
                 $time = date('H:i:s');
 
+                // Загрузка изображений
+
                 // if(!empty($_FILESS['articlImg']['tmp_name'])){
-                //     if(!move_uploaded_file($_FILESS['articlImg']['tmp_name'])){}
+                //     if(!move_uploaded_file($_FILESS['articlImg']['tmp_name'], 'file/'.$_FILESS['articlImg']['tmp_name'])){
+                //         exit('Изображение не загружено');
+                //     }
                 // }
-                print_r($_FILES);
 
                 // Отношения БД
                 $users = R::load('users', 1);

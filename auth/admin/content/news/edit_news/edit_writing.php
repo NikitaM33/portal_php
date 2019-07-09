@@ -1,60 +1,45 @@
 <?php session_start();
     if($_SESSION['logged_user']){ ?>
-    <?php require '../../../../../db.php' ?>
-    <?php echo "<link rel='stylesheet' href='../../../../../css/style.css'>" ?>
+    <?php 
+        require '../../../../../db.php';
+        echo "<link rel='stylesheet' href='../../../../../css/style.css'>";
 
-    <?php
         if(isset($_GET['edit_id'])){
-            
+            $uploadArt = R::findOne('articles', 'id = ?', array($_GET['edit_id']));
         }
 
-        if(isset($_POST['apply'])) {
-            $articleHeader = htmlspecialchars($_POST['artHeader']);
-            $text_body = htmlspecialchars($_POST['text']);
+        if(isset($_POST['apply'])){
+            $artHeader = htmlspecialchars($_POST['artHeader']);
+            $text = htmlspecialchars($_POST['text']);
+            $img = $_POST['articlImg'];
 
+            $machineName = getenv("COMPUTERNAME");
+            $day = date('d.m.Y');
+            $time = date('H:i:s');
 
-            // Для того чтобы текст сохранялся в полях при перезагрузке страницы
+            // Проверка на пустоту полей должна быть
 
-            // $_SESSION['articleHeader'] = $articleHeader;
-            // "<input value="$_SESSION['articleHeader'];" />";
-            // $_SESSION['text_body'] = $text_body;
+            // if(empty($artHeader) || empty($artHeader))
 
-            $error_articleHeader = "";
-            $error_text_body = "";
-            $error = false;
+            $editing_art = R::load('articles', $_GET['edit_id']);
 
-            if(strlen($articleHeader) == 0) {
-                $error_articleHeader = "Название статьи не введено";
-                $error = true;
-            }
+            $editing_art->title = $artHeader;
+            // $editing_art->image = $img;
+            $editing_art->text = $text;
+            $editing_art->pubdate = $day;
+            $editing_art->pubtime = $time;
+            $editing_art->machine_name = $machineName;
+            
+            R::store($editing_art);
 
-            if(strlen($text_body) == 0) {
-                $error_text_body = "Статья не введена";
-                $error = true;
-            }
+            // Добавить проверку на изменение строки mysqli_afected_rows
+            // Сделать перенаправление на другую страницу после нажатия на кнопку
 
-            if(!$error) {
-                $machineName = getenv("COMPUTERNAME");
-                $day = date('d.m.Y');
-                $time = date('H:i:s');
+            header("Location: /auth/admin/content/news/edit_news/edit_news.php");
+            exit;
 
-                $users = R::load('users', 1);
-
-                $edited_articles = R::dispense('edited_articles');
-                $edited_articles->title = $articleHeader;
-                $edited_articles->text = $text_body;
-                $edited_articles->image = NULL;
-                $edited_articles->pubdate = $day;
-                $edited_articles->pubtime = $time;
-                $edited_articles->machine_name = $machineName;
-
-                $users->ownArticlesList[] = $edited_articles;
-                
-                R::store($users);
-
-                $success = "Статья отредактирована";
-            }
-        };
+            // $success = "Статья отредактирована";
+        }
     ?>
 
     <div class="wrapper">
@@ -74,20 +59,27 @@
                 <p>
                     <h4>Отредактировать название</h4>
                     <input type="text" placeholder="Введите азвание" name="artHeader"
-                    class="artHeader" />
+                    class="artHeader" value="<?=$uploadArt->title?>" />
                     <span style="color: red;"><?=$error_artHeader?></span>
+                </p>
+
+                <p>
+                    <h4>Изменить изображение</h4>
+                    <input type="file" name="articlImg"
+                    class="articlImg" />
+                    <span style="color: red;"><?=$error_articleHeader?></span>
                 </p>
 
                 <p>
                     <h4>Отредактировать текст</h4>
                     <textarea name="text" id="" placeholder="Введите текст" 
-                     class="articleArea"><?=$_SESSION['text']; ?></textarea>
+                     class="articleArea"><?=$uploadArt->text?></textarea>
                      <span style="color: red;"><?=$error_text?></span>
                 </p>
 
                 <p>
                     <button type="submit" name="apply"><b>Применить правки</b></button>
-                    <span style="color: green"><?=$success?></span>
+                    <!-- <span style="color: green"><?=$success?></span> -->
                 </p>
             </form>
 
@@ -96,4 +88,5 @@
 
 <?php } else {
     header("Location: /");
+    exit;
 }; ?>

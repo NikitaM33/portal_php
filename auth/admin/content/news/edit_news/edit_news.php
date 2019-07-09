@@ -48,6 +48,10 @@
                 <h1>Редактировать статью</h1>
             </div>
 
+            <p>
+                
+            </p>
+
             <div class="auxiliary-wrapper">
                 <h2 class="underline"><p>Список статей</p></h2>
 
